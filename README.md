@@ -6,10 +6,9 @@
 ![Tests](https://img.shields.io/badge/tests-100%2B-orange)
 
 
-Minimal automated testing suite for **push_swap**.
+## Minimal automated testing suite for **push_swap**.
 
-## 📂 Where to Place the Tester Script (.sh)
-
+📂 Where to Place the Tester Script (.sh):
 After cloning this tester repository, you must place the tester script in the **same directory as your `push_swap` executable**.
 
 Example folder structure:
@@ -27,26 +26,12 @@ cp push_swap_tester/test_enhanced.sh .
 chmod +x test_enhanced.sh
 
 ---
-How to Copy the Script :
-git clone https://github.com/MubinaMubina/push_swap_tester.git
-cp push_swap_tester/test_enhanced.sh .
-chmod +x test_enhanced.sh
 
 
 ## 🚀 Quick Start
 
-```bash
-make
-make test
-
-
-🛠️ Test Commands :
-make test          # full automated test suite
-make test-verbose  # detailed output for every test
-make test-quick    # fast basic tests
-make valgrind      # Linux/WSL2 memory check
-make leak           # macOS memory check
-
+Now you can run:
+./test_enhanced.sh
 
 🧪 Manual Tests :
 Operation Count:

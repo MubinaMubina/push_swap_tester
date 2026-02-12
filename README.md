@@ -8,6 +8,20 @@
 
 Minimal automated testing suite for **push_swap**.
 
+## 📂 Where to Place the Tester Script (.sh)
+
+After cloning this tester repository, you must place the tester script in the **same directory as your `push_swap` executable**.
+
+### Example Folder Structure
+
+```text
+push_swap/
+│
+├── push_swap        # your compiled program
+├── Makefile
+├── test_enhanced.sh # copy tester here
+└── src/
+
 ---
 
 ## 🚀 Quick Start

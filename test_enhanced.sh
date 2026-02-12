@@ -284,7 +284,7 @@ if [ -n "$PYTHON_CMD" ]; then
             echo -e "${GREEN}✓ PASS${NC}"
             PASSED_TESTS=$((PASSED_TESTS + 1))
         else
-            echo -e "${RED}✗ FAIL${NC} (expected < 200, got $OPS)"
+            echo -e "${RED}✗ FAIL${NC} (expected < 200, got $OPS) (Failed to get 100% but Pass for less than 100% depending on the operation counts allowed mentioned in the evaluation sheet)"
             FAILED_TESTS=$((FAILED_TESTS + 1))
         fi
     fi
@@ -299,7 +299,7 @@ if [ -n "$PYTHON_CMD" ]; then
             echo -e "${GREEN}✓ PASS${NC} ⭐"
             PASSED_TESTS=$((PASSED_TESTS + 1))
         else
-            echo -e "${RED}✗ FAIL${NC} ⭐ (expected < 700, got $OPS)"
+            echo -e "${RED}✗ FAIL${NC} ⭐ (expected < 700, got $OPS) (Failed to get 100% but Pass for less than 100% depending on the operation counts allowed mentioned in the evaluation sheet)""
             FAILED_TESTS=$((FAILED_TESTS + 1))
         fi
     fi
@@ -314,7 +314,7 @@ if [ -n "$PYTHON_CMD" ]; then
             echo -e "${GREEN}✓ PASS${NC} ⭐"
             PASSED_TESTS=$((PASSED_TESTS + 1))
         else
-            echo -e "${RED}✗ FAIL${NC} ⭐ (expected < 5500, got $OPS)"
+            echo -e "${RED}✗ FAIL${NC} ⭐ (expected < 5500, got $OPS) (Failed to get 100% but Pass for less than 100% depending on the operation counts allowed mentioned in the evaluation sheet)"
             FAILED_TESTS=$((FAILED_TESTS + 1))
         fi
     fi

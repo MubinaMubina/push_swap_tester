@@ -12,8 +12,7 @@ Minimal automated testing suite for **push_swap**.
 
 After cloning this tester repository, you must place the tester script in the **same directory as your `push_swap` executable**.
 
-### Example Folder Structure
-
+Example folder structure:
 ```text
 push_swap/
 │
@@ -22,7 +21,17 @@ push_swap/
 ├── test_enhanced.sh # copy tester here
 └── src/
 
+How to Copy the Script:
+git clone https://github.com/MubinaMubina/push_swap_tester.git
+cp push_swap_tester/test_enhanced.sh .
+chmod +x test_enhanced.sh
+
 ---
+How to Copy the Script :
+git clone https://github.com/MubinaMubina/push_swap_tester.git
+cp push_swap_tester/test_enhanced.sh .
+chmod +x test_enhanced.sh
+
 
 ## 🚀 Quick Start
 

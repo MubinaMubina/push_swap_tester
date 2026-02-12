@@ -82,11 +82,11 @@ A high-performance stack sorting implementation using a radix sort algorithm wit
 
 ```bash
 # Using HTTPS
-git clone https://github.com/yourusername/push_swap.git
+git clone https://github.com/MubinaMubina/push_swap.git
 cd push_swap
 
 # Using SSH
-git clone git@github.com:yourusername/push_swap.git
+git clone git@github.com:MubinaMubina/push_swap.git
 cd push_swap
 ```
 
@@ -488,15 +488,13 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 👥 Authors & Contributors
 
-- **Your Name** - Initial implementation
-- **Contributors** - See CONTRIBUTORS.md
+- **Mubina**
 
 ---
 
 ## 📞 Contact
 
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Issues**: [GitHub Issues](../../issues)
+- **GitHub**: [@MubinaMubina](https://github.com/MubinaMubina)
 
 ---
 

@@ -8,11 +8,13 @@
 
 ## Minimal automated testing suite for **push_swap**.
 
+```text
+
 📂 Where to Place the Tester Script (.sh):
 After cloning this tester repository, you must place the tester script in the **same directory as your `push_swap` executable**.
 
 Example folder structure:
-```text
+
 push_swap/
 │
 ├── push_swap        # your compiled program

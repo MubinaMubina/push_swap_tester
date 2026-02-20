@@ -1,5 +1,7 @@
 # 🧪 Push_Swap Tester
 
+ONLY FOR LINUX
+
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Language](https://img.shields.io/badge/language-Bash-blue)
 ![Status](https://img.shields.io/badge/status-42%20Ready-success)

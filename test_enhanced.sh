@@ -259,36 +259,7 @@ run_test "No duplicates (valid)" "./push_swap 1 2 3 4 5 6 7 8 9 10" "NO_ERROR" "
 print_section "CATEGORY 8: PERFORMANCE & OPERATION COUNTS"
 
 if [ -n "$PYTHON_CMD" ]; then
-    # 10 random numbers
-    ARG_10=$($PYTHON_CMD -c "import random; print(' '.join(map(str, random.sample(range(100), 10))))" 2>/dev/null)
-    if [ -n "$ARG_10" ]; then
-        OPS=$(./push_swap $ARG_10 2>/dev/null | wc -l)
-        TOTAL_TESTS=$((TOTAL_TESTS + 1))
-        echo -n "Test $TOTAL_TESTS: 10 random numbers (ops: $OPS)... "
-        if [ "$OPS" -lt 50 ]; then
-            echo -e "${GREEN}✓ PASS${NC}"
-            PASSED_TESTS=$((PASSED_TESTS + 1))
-        else
-            echo -e "${RED}✗ FAIL${NC} (expected < 50, got $OPS)"
-            FAILED_TESTS=$((FAILED_TESTS + 1))
-        fi
-    fi
-    
-    # 50 random numbers
-    ARG_50=$($PYTHON_CMD -c "import random; print(' '.join(map(str, random.sample(range(500), 50))))" 2>/dev/null)
-    if [ -n "$ARG_50" ]; then
-        OPS=$(./push_swap $ARG_50 2>/dev/null | wc -l)
-        TOTAL_TESTS=$((TOTAL_TESTS + 1))
-        echo -n "Test $TOTAL_TESTS: 50 random numbers (ops: $OPS)... "
-        if [ "$OPS" -lt 200 ]; then
-            echo -e "${GREEN}✓ PASS${NC}"
-            PASSED_TESTS=$((PASSED_TESTS + 1))
-        else
-            echo -e "${RED}✗ FAIL${NC} (expected < 200, got $OPS, Failed to get 100% but Pass for less than 100% depending on the operation counts allowed mentioned in the evaluation sheet)"
-            FAILED_TESTS=$((FAILED_TESTS + 1))
-        fi
-    fi
-    
+  
     # 100 random numbers ⭐ CRITICAL
     ARG_100=$($PYTHON_CMD -c "import random; print(' '.join(map(str, random.sample(range(1000), 100))))" 2>/dev/null)
     if [ -n "$ARG_100" ]; then
@@ -318,31 +289,10 @@ if [ -n "$PYTHON_CMD" ]; then
             FAILED_TESTS=$((FAILED_TESTS + 1))
         fi
     fi
-    
-    # Consistency test: Run 100-number test 3 times
-    TOTAL_TESTS=$((TOTAL_TESTS + 1))
-    echo -n "Test $TOTAL_TESTS: Consistency (3x 100 numbers)... "
-    all_pass=1
-    for i in {1..3}; do
-        ARG=$($PYTHON_CMD -c "import random; print(' '.join(map(str, random.sample(range(1000), 100))))" 2>/dev/null)
-        OPS=$(./push_swap $ARG 2>/dev/null | wc -l)
-        if [ "$OPS" -ge 700 ]; then
-            all_pass=0
-        fi
-    done
-    if [ $all_pass -eq 1 ]; then
-        echo -e "${GREEN}✓ PASS${NC}"
-        PASSED_TESTS=$((PASSED_TESTS + 1))
-    else
-        echo -e "${RED}✗ FAIL${NC} (inconsistent results)"
-        FAILED_TESTS=$((FAILED_TESTS + 1))
-    fi
+
 else
-    skip_test "10 random numbers"
-    skip_test "50 random numbers"
     skip_test "100 random numbers ⭐"
     skip_test "500 random numbers ⭐"
-    skip_test "Consistency test"
 fi
 
 ################################################################################

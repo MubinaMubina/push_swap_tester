@@ -199,7 +199,7 @@ run_test "Zero with negatives" "./push_swap -5 0 5 | wc -l" "NOT_EMPTY" "ZERO"
 print_section "CATEGORY 5: ERROR CASES & VALIDATION"
 
 run_test "Empty argument" "./push_swap \"\" 2>&1" "CONTAINS_ERROR" "ERROR"
-run_test "No arguments" "./push_swap 2>&1" "CONTAINS_ERROR" "ERROR"
+run_test "No arguments" "./push_swap 2>&1" "EMPTY" "ERROR"
 run_test "Invalid character a" "./push_swap 1 a 3 2>&1" "CONTAINS_ERROR" "ERROR"
 run_test "Invalid character @" "./push_swap \"1 @ 3\" 2>&1" "CONTAINS_ERROR" "ERROR"
 run_test "Invalid character space only" "./push_swap \"   \" 2>&1" "CONTAINS_ERROR" "ERROR"
@@ -380,7 +380,7 @@ run_test "No trailing whitespace" "./push_swap 2 1 | grep ' $' | wc -l" "0" "FOR
 run_test "stderr for errors" "./push_swap \"bad\" 2>/dev/null | wc -l" "0" "FORMAT"
 run_test "Error to stderr" "./push_swap \"bad\" 2>&1 1>/dev/null | grep -c Error" "1" "FORMAT"
 run_test "Correct exit code success" "./push_swap 1 2 3; echo \$?" "0" "FORMAT"
-run_test "Correct exit code error" "./push_swap \"bad\" 2>/dev/null; echo \$?" "EXIT_FAIL" "FORMAT"
+run_test "Correct exit code error" "./push_swap \"bad\" 2>/dev/null" "EXIT_FAIL" "FORMAT"
 
 ################################################################################
 # CATEGORY 11: MEMORY TESTS (5 tests)
@@ -391,30 +391,30 @@ print_section "CATEGORY 11: MEMORY & CLEANUP"
 if [ -n "$VALGRIND_CMD" ]; then
     TOTAL_TESTS=$((TOTAL_TESTS + 1))
     echo -n "Test $TOTAL_TESTS: Valgrind no leaks (small)... "
-    VALGRIND_OUT=$($VALGRIND_CMD --leak-check=full --quiet ./push_swap 5 4 3 2 1 2>&1)
-    if [[ "$VALGRIND_OUT" == *"0 leaks"* ]] || [[ -z "$VALGRIND_OUT" ]]; then
+    $VALGRIND_CMD --leak-check=full --log-file=/tmp/vg_test.txt ./push_swap 5 4 3 2 1 >/dev/null 2>/dev/null
+    if grep -q "ERROR SUMMARY: 0 errors" /tmp/vg_test.txt 2>/dev/null; then
         echo -e "${GREEN}✓ PASS${NC}"
         PASSED_TESTS=$((PASSED_TESTS + 1))
     else
         echo -e "${RED}✗ FAIL${NC}"
         FAILED_TESTS=$((FAILED_TESTS + 1))
     fi
-    
+
     TOTAL_TESTS=$((TOTAL_TESTS + 1))
     echo -n "Test $TOTAL_TESTS: Valgrind error on error... "
-    VALGRIND_OUT=$($VALGRIND_CMD --leak-check=full --quiet ./push_swap "bad" 2>&1)
-    if [[ "$VALGRIND_OUT" == *"0 leaks"* ]] || [[ -z "$VALGRIND_OUT" ]]; then
+    $VALGRIND_CMD --leak-check=full --log-file=/tmp/vg_test.txt ./push_swap "bad" >/dev/null 2>/dev/null
+    if grep -q "ERROR SUMMARY: 0 errors" /tmp/vg_test.txt 2>/dev/null; then
         echo -e "${GREEN}✓ PASS${NC}"
         PASSED_TESTS=$((PASSED_TESTS + 1))
     else
         echo -e "${RED}✗ FAIL${NC}"
         FAILED_TESTS=$((FAILED_TESTS + 1))
     fi
-    
+
     TOTAL_TESTS=$((TOTAL_TESTS + 1))
     echo -n "Test $TOTAL_TESTS: Valgrind duplicate reject... "
-    VALGRIND_OUT=$($VALGRIND_CMD --leak-check=full --quiet ./push_swap 1 1 2 2>&1)
-    if [[ "$VALGRIND_OUT" == *"0 leaks"* ]] || [[ -z "$VALGRIND_OUT" ]]; then
+    $VALGRIND_CMD --leak-check=full --log-file=/tmp/vg_test.txt ./push_swap 1 1 2 >/dev/null 2>/dev/null
+    if grep -q "ERROR SUMMARY: 0 errors" /tmp/vg_test.txt 2>/dev/null; then
         echo -e "${GREEN}✓ PASS${NC}"
         PASSED_TESTS=$((PASSED_TESTS + 1))
     else

@@ -1,6 +1,6 @@
 # 🧪 Push_Swap Tester
 
-ONLY FOR LINUX
+!!!! ONLY FOR LINUX !!!!
 
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Language](https://img.shields.io/badge/language-Bash-blue)
